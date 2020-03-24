@@ -1,0 +1,13 @@
+name: iv
+author: Hancho
+version: 1.0.0
+main: hancho.nukkit.plugin.iv.iv
+api: [1.0.0]
+
+commands:
+    iv:
+     description: 아이템코드를 봅니다
+     permission: 'true'
+    bv:
+     description: 터치한 블럭의 아이템코드를 봅니다
+     permission: 'true'
