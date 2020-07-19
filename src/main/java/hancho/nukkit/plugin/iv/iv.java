@@ -3,18 +3,18 @@ package hancho.nukkit.plugin.iv;
 import java.util.HashMap;
 
 import cn.nukkit.Player;
-import cn.nukkit.block.Block;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.player.PlayerInteractEvent;
 import cn.nukkit.event.player.PlayerInteractEvent.Action;
+import cn.nukkit.event.player.PlayerQuitEvent;
 import cn.nukkit.item.Item;
 import cn.nukkit.plugin.PluginBase;
 
 public class iv extends PluginBase implements Listener {
-	public HashMap<String, Boolean> bvList = new HashMap<String, Boolean>();
+	public HashMap<String, Boolean> bvList = new HashMap<>();
 
 	@Override
 	public void onEnable() {
@@ -56,5 +56,10 @@ public class iv extends PluginBase implements Listener {
 			if (ev.getAction().equals(Action.RIGHT_CLICK_BLOCK))
 				ev.getPlayer().sendMessage("§l§f[ §6! §f] 블럭 정보 : " + ev.getBlock());
 		}
+	}
+
+	@EventHandler
+	public void onQuit(PlayerQuitEvent ev){
+		if (this.bvList.containsKey(ev.getPlayer().getName())) this.bvList.remove(ev.getPlayer().getName());
 	}
 }
